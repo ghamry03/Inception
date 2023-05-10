@@ -1,17 +1,19 @@
 NAME				=	inception
 
+DOCKER_CMD 			= 	docker compose -f $(DOCKER_COMPOSE_PATH) -p $(NAME)
+
 DOCKER_COMPOSE_PATH	=	./srcs/docker-compose.yml
 
 all: build up
 
 build:
-	@docker compose -f $(DOCKER_COMPOSE_PATH) -p $(NAME) build --no-cache #### enable this before submission ya homar
+	@$(DOCKER_CMD) build cache #### enable this before submission ya homar
 
 up:
-	@docker compose -f $(DOCKER_COMPOSE_PATH) -p $(NAME) up -d
+	@$(DOCKER_CMD) up -d
 
 down:
-	@docker compose -f $(DOCKER_COMPOSE_PATH) -p $(NAME) down
+	@$(DOCKER_CMD) down
 
 clean: down
 
