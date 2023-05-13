@@ -6,12 +6,13 @@ WP="wp --allow-root --path=$WP_PATH"
 
 chown -R www-data:www-data $WP_PATH && chmod -R 755 $WP_PATH
 
-wget $WP_URL
-chmod +x wp-cli.phar
-mv wp-cli.phar /usr/local/bin/wp
-
-if [[ ! -f "$WP_PATH/wp-config.php" ]]
+if [ ! -f "$WP_PATH/wp-config.php" ]
 then
+
+    wget $WP_URL
+    chmod +x wp-cli.phar
+    mv wp-cli.phar /usr/local/bin/wp
+
     $WP core download
 
     $WP config create                                           \
@@ -28,6 +29,10 @@ then
     $WP user create ${WORDPRESS_USER} ${WORDPRESS_EMAIL}        \
         --user_pass=${WORDPRESS_PASSWORD}                       \
         --role=author
+
+    echo "file doesn't exists $WP_PATH/wp-config.php" >> test.txt
+else
+    echo "file exists $WP_PATH/wp-config.php" >> test.txt
 fi
 
-/usr/sbin/php-fpm7.4 -F -R --fpm-config /etc/php/7.4/fpm/pool.d/www.conf
+/usr/sbin/php-fpm7.3 -F -R --fpm-config /etc/php/7.3/fpm/pool.d/www.conf

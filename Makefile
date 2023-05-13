@@ -4,10 +4,13 @@ DOCKER_CMD 			= 	docker compose -f $(DOCKER_COMPOSE_PATH) -p $(NAME)
 
 DOCKER_COMPOSE_PATH	=	./srcs/docker-compose.yml
 
+mariadb: ### tmpp
+	@$(DOCKER_CMD) up -d --force-recreate --build mariadb
+
 all: build up
 
 build:
-	@$(DOCKER_CMD) build cache #### enable this before submission ya homar
+	@$(DOCKER_CMD) build --no-cache #### enable this before submission ya homar
 
 up:
 	@$(DOCKER_CMD) up -d

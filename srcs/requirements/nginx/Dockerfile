@@ -1,5 +1,5 @@
 # nginx Dockerfile
-FROM debian:bullseye
+FROM debian:buster
 
 RUN apt update && apt upgrade -y
 RUN apt install nginx -y 
