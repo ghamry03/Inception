@@ -1,9 +1,7 @@
-# nginx Dockerfile
 FROM debian:buster
 
-RUN apt update && apt upgrade -y
-RUN apt install nginx -y 
-RUN apt install openssl -y 
+RUN apt-get update --no-install-recommends -y && \
+    apt-get install nginx openssl -y 
 
 RUN rm -rf /etc/nginx/sites-available/*
 RUN rm -rf /etc/nginx/sites-enabled/*

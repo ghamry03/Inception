@@ -1,12 +1,12 @@
-# mariadb Dockerfile
 FROM debian:buster
 
 ARG MYSQL_USER
 ARG MYSQL_PASSWORD
 ARG MYSQL_ROOT_PASSWORD
 
-RUN apt update && apt upgrade -y
-RUN apt install mariadb-server mariadb-client -y
+RUN apt-get update --no-install-recommends -y && \
+    apt-get install mariadb-server -y && \
+    apt-get install mariadb-client -y
 
 RUN chown -R mysql:mysql /var/lib/mysql && \ 
     service mysql restart && \

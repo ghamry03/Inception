@@ -2,8 +2,8 @@ FROM debian:buster
 
 ARG DOMAIN_NAME
 
-RUN apt update && apt upgrade -y
-RUN apt install php php-fpm mariadb-client php-mysql wget -y
+RUN apt-get update  --no-install-recommends -y && \
+    apt-get install php php-fpm mariadb-client php-mysql wget -y
 
 RUN rm /etc/php/7.3/fpm/pool.d/www.conf
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
