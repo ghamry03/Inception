@@ -24,10 +24,3 @@ re: fclean all
 
 dockerclean:
 	@docker system prune -af
-
-evaluation:
-	@docker stop $(shell docker ps -qa)
-	@docker rm $(shell docker ps -qa);
-	@docker rmi -f $(shell docker images -qa);
-	@docker volume rm $(shell docker volume ls -q);
-	@docker network rm $(shell docker network ls -q ) 2> /dev/null
