@@ -12,7 +12,7 @@ services:
             - wordpress_data:/var/www/html/wordpress/public_html
         networks:
             - internal
-        restart: always
+        restart:  on-failure
 
     mariadb:
         build:
@@ -29,7 +29,7 @@ services:
             - MYSQL_ROOT_PASSWORD
         networks:
             - internal
-        restart: always
+        restart:  on-failure
 
     wordpress:
         build:
@@ -53,7 +53,7 @@ services:
         depends_on:
             - nginx
             - mariadb
-        restart: always
+        restart:  on-failure
 
 volumes:
     wordpress_data:

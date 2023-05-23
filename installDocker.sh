@@ -15,6 +15,7 @@ echo \
 sudo apt-get update -y
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
-sudo usermod -aG docker $(USER)
+sudo usermod -aG docker $USER
+sudo chmod 666 /var/run/docker.sock
 
 sudo echo "127.0.0.1 ommohame.42.fr" >> /etc/hosts

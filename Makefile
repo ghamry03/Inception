@@ -7,6 +7,7 @@ DOCKER_COMPOSE_PATH	=	./srcs/docker-compose.yml
 all: build up
 
 build:
+	@mkdir -p /home/ommohame/data/wordpress /home/ommohame/data/mariadb
 	@$(DOCKER_CMD) build --no-cache
 
 up:
